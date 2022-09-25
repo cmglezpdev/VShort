@@ -1,8 +1,9 @@
 import { FC, useEffect, useRef } from 'react';
 import { useToggle } from 'react-utils-custom-hooks'
-import { VideoPlayerActions } from './';
+import { VideoPlayerActions, VideoDescription } from './';
 
 interface Props {
+    author: string,
     description: string,
     likes: string,
     shares: string,
@@ -13,7 +14,11 @@ interface Props {
 }
 
 
-export const VideoPlayer:FC<Props> = ({ src }) => {
+export const VideoPlayer:FC<Props> = ( props ) => {
+
+    const { src, likes, comments, shares, description, songTitle, albumCover, author } = props;
+    const playerActionsProps = { likes, comments, shares };
+    const playerDescriptionProps = { author, description, songTitle, albumCover };
 
     const video = useRef<HTMLVideoElement>(null);
     const [playing, playingToggle] = useToggle(false);
@@ -44,7 +49,12 @@ export const VideoPlayer:FC<Props> = ({ src }) => {
                 className={`w-16 h-16 bg-contain bg-no-repeat bg-center bg-player absolute inset-0 m-auto ${playing && 'opacity-0'}`} 
                 onClick={handlePlay}
             />
-            <VideoPlayerActions />
+            <VideoPlayerActions
+                {...playerActionsProps}
+            />
+            <VideoDescription
+                {...playerDescriptionProps}
+            />
         </div>
     )
 }

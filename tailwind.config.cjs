@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'player': "url('/assets/play.png')"
+      },
+      animation: {
+        'slow-spin': "4s linear 0s infinite normal none running spin"
       } 
     },
   },

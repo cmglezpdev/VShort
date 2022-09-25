@@ -1,4 +1,4 @@
-import { VideoPlayer } from "../VideoPlayer/VideoPlayer"
+import { VideoPlayer } from "../VideoPlayer"
 
 const VIDEOS = [
     {

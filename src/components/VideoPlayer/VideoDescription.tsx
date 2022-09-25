@@ -1,24 +1,30 @@
-import { AlbumDisk } from './';
 import { FC } from 'react';
+import { AlbumDisk, SongTicker } from './';
 
 interface Props {
     author: string,
     description: string,
-    albumCover: string
+    albumCover: string,
+    songTitle: string,
 }
 
 
-export const VideoDescription:FC<Props> = ({ author, description, albumCover }) => {
+export const VideoDescription:FC<Props> = ({ author, description, albumCover, songTitle }) => {
     return (
         <footer className="absolute bottom-0 z-10 flex mb-4 w-full">
-            <div className='w-4/5 pl-2'>
-                <strong>{ author }</strong>
-                <p>{ description }</p>
-            </div>
+            <section className='w-[75%] pl-2'>
+                <strong className='mb-2 block'>
+                    <a href={`user/${author}`}>
+                        @{ author }
+                    </a>
+                </strong>
+                <p className='block mb-2'>{ description }</p>
+                <SongTicker songTitle={songTitle} />
+            </section>
 
-            <div className='w-1/5'>
+            <section className='w-[25%] flex justify-center items-end'>
                 <AlbumDisk albumCover={albumCover} />
-            </div>
+            </section>
         </footer>
     )
 }

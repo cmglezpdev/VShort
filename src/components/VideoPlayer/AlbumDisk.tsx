@@ -10,7 +10,6 @@ export const AlbumDisk:FC<Props> = ({ albumCover }) => {
     return (
         <div className='animate-slow-spin w-14'>
             <CircleDisk
-                className=''
             />
             <img 
                 src={albumCover} 

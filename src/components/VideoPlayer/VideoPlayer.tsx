@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from 'react';
-import { useToggle } from 'react-utils-custom-hooks'
+import { useToggle } from 'react-utils-custom-hooks';
 import { VideoPlayerActions, VideoDescription } from './';
 
 interface Props {
@@ -36,7 +36,7 @@ export const VideoPlayer:FC<Props> = ( props ) => {
     }
 
     return (
-        <div className='relative'>
+        <div className='relative h-screen flex'>
             <video
                 ref={video} 
                 // autoPlay

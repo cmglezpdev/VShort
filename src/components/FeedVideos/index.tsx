@@ -33,8 +33,8 @@ export const FeedVideos = () => {
         <>
         {
             VIDEOS.map(video => 
-                <div className="snap-center">
-                    <VideoPlayer key={video.id} {...video} />
+                <div className="snap-center" key={video.id}>
+                    <VideoPlayer{...video} />
                 </div>
             )
         }

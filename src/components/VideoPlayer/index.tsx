@@ -1,20 +1,28 @@
 
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useToggle } from 'react-utils-custom-hooks'
 
-const src = 'https://v16m-default.tiktokcdn-us.com/77388cd0c4e95eee2d35b3962861e0fc/632ff740/video/tos/useast2a/tos-useast2a-pve-0068/674f05afd0994524ba509cbb20e5c520/?a=1988&ch=0&cr=0&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C0&cv=1&br=2824&bt=1412&cs=0&ds=3&ft=eXWR6H-qMyq8ZDfrfhe2NjQNfl7Gb&mime_type=video_mp4&qs=0&rc=OGUzNDZmOzg1ZztlZDdoZEBpM3Q1aTM6ZjM7ZjMzNzczM0A1LS1hYV80XjYxYGEyYF82YSNzYWgxcjRvMDNgLS1kMTZzcw%3D%3D&l=202209250036407F457FB7A711AE72664E'
+interface Props {
+    description: string,
+    likes: string,
+    shares: string,
+    comments: string,
+    songTitle: string,
+    albumCover: string,
+    src: string,
+}
 
-export const VideoPlayer = () => {
+
+export const VideoPlayer:FC<Props> = ({ src }) => {
 
     const video = useRef<HTMLVideoElement>(null);
     const [playing, playingToggle] = useToggle(false);
-
+    
     useEffect(() => {
 
     }, [])
 
     const handlePlay = () => {
-        console.log('hola');
         playing
             ? video.current?.pause()
             : video.current?.play()
@@ -23,11 +31,12 @@ export const VideoPlayer = () => {
     }
 
     return (
-        <div>
+        <div className='relative'>
             <video
                 ref={video} 
                 // autoPlay
                 // muted
+                loop
                 src={src} 
                 onClick={handlePlay}
             />

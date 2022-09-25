@@ -3,8 +3,6 @@ import { SVGProps } from "react"
 
 export const Heart = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width="3em"
-    height="3em"
     viewBox="0 0 48 48"
     {...props}
   >

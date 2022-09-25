@@ -2,8 +2,6 @@
 import { useEffect, useRef } from 'react';
 import { useToggle } from 'react-utils-custom-hooks'
 
-import player from '../../assets/play.png';
-
 const src = 'https://v16m-default.tiktokcdn-us.com/77388cd0c4e95eee2d35b3962861e0fc/632ff740/video/tos/useast2a/tos-useast2a-pve-0068/674f05afd0994524ba509cbb20e5c520/?a=1988&ch=0&cr=0&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C0&cv=1&br=2824&bt=1412&cs=0&ds=3&ft=eXWR6H-qMyq8ZDfrfhe2NjQNfl7Gb&mime_type=video_mp4&qs=0&rc=OGUzNDZmOzg1ZztlZDdoZEBpM3Q1aTM6ZjM7ZjMzNzczM0A1LS1hYV80XjYxYGEyYF82YSNzYWgxcjRvMDNgLS1kMTZzcw%3D%3D&l=202209250036407F457FB7A711AE72664E'
 
 export const VideoPlayer = () => {
@@ -16,8 +14,10 @@ export const VideoPlayer = () => {
     }, [])
 
     const handlePlay = () => {
-        if( playing ) video.current?.pause();
-        else video.current?.play();
+        console.log('hola');
+        playing
+            ? video.current?.pause()
+            : video.current?.play()
 
         playingToggle();
     }
@@ -28,11 +28,11 @@ export const VideoPlayer = () => {
                 ref={video} 
                 // autoPlay
                 // muted
-                controls
                 src={src} 
+                onClick={handlePlay}
             />
-            <button 
-                className='w-16 h-16 bg-contain bg-no-repeat bg-center bg-player absolute inset-0 m-auto'
+            <i 
+                className={`w-16 h-16 bg-contain bg-no-repeat bg-center bg-player absolute inset-0 m-auto ${playing && 'opacity-0'}`} 
                 onClick={handlePlay}
             />
         </div>

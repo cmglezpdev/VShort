@@ -1,6 +1,6 @@
-
 import { FC, useEffect, useRef } from 'react';
 import { useToggle } from 'react-utils-custom-hooks'
+import { VideoPlayerActions } from './VideoPlayerActions';
 
 interface Props {
     description: string,
@@ -44,6 +44,7 @@ export const VideoPlayer:FC<Props> = ({ src }) => {
                 className={`w-16 h-16 bg-contain bg-no-repeat bg-center bg-player absolute inset-0 m-auto ${playing && 'opacity-0'}`} 
                 onClick={handlePlay}
             />
+            <VideoPlayerActions />
         </div>
     )
 }

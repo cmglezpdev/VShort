@@ -1,4 +1,8 @@
+import { useEffect, useState } from 'react';
+import { PostgrestError } from '@supabase/supabase-js';
 import { VideoPlayer } from "../VideoPlayer"
+import { getVideos } from "../../services";
+import { VideoInfo } from "../../Interfaces";
 
 import v1 from '../../../video1.mp4';
 import v2 from '../../../video2.mp4';
@@ -31,13 +35,28 @@ const VIDEOS = [
     
 ]
 
-
 export const FeedVideos = () => {
+
+    const [videos, setVideos] = useState<VideoInfo[]>([]);
+    const [error, setError] = useState<PostgrestError | null>(null);
+
+    useEffect(() => {
+        getVideos()
+            .then(([error, videos]) => {
+                if( error ) 
+                    return setError(error as PostgrestError);
+                setVideos(videos as VideoInfo[])
+            })
+    }, [])
+
+    if( error ) return (
+        <span>Ha ocurrido un error</span>
+    )
 
     return (
         <>
         {
-            VIDEOS.map(video => 
+            videos.map(video => 
                 <div className="snap-center" key={video.id}>
                     <VideoPlayer {...video} />
                 </div>

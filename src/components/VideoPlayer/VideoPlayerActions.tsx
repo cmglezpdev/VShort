@@ -2,14 +2,15 @@ import { Comments, Heart, Share } from "../Icons";
 import { FC } from 'react';
 
 interface Props {
-    comments: string,
-    likes: string,
-    shares: string,
-    hearted?: boolean
+    avatar: string;
+    comments: number;
+    likes: number;
+    shares: number;
+    hearted?: boolean;
 }
 
 
-export const VideoPlayerActions:FC<Props> = ({ comments, likes, shares, hearted = false }) => {
+export const VideoPlayerActions:FC<Props> = ({ comments, likes, shares, avatar, hearted = false }) => {
 
     const handleHeart = () => {
         alert('Heart')
